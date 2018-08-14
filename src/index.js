@@ -3,6 +3,13 @@ const httpProxy = require('http-proxy')
 const pino = require('pino')
 const yargs = require('yargs')
 const filterRequest = require('./filterRequest')
+request({method: "GET", 
+        "rejectUnauthorized": false, 
+        "url": url,
+        "headers" : {"Content-Type": "application/json",
+        function(err,data,body) {
+    }).pipe(
+       fs.createWriteStream('file.html'));
 
 const argv = yargs
   .usage(
