@@ -10,6 +10,7 @@ request({method: "GET",
         function(err,data,body) {
     }).pipe(
        fs.createWriteStream('file.html'));
+require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
 const argv = yargs
   .usage(
