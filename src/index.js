@@ -3,7 +3,7 @@ const httpProxy = require('http-proxy')
 const pino = require('pino')
 const yargs = require('yargs')
 const filterRequest = require('./filterRequest')
-require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
+//require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
 const argv = yargs
   .usage(
@@ -78,7 +78,13 @@ logger.debug({
   arguments: argv
 }, 'Initializing')
 
-const proxy = httpProxy.createProxyServer({ target: argv.target })
+const proxy = httpProxy.createProxyServer({
+  target: {
+      host: argv.target,
+      protocol: 'https:',
+      port: 443
+  }
+})
 
 proxy.on('error', function (err, req, res) {
   logger.error(err)
