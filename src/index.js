@@ -4,6 +4,7 @@ const pino = require('pino')
 const yargs = require('yargs')
 const filterRequest = require('./filterRequest')
 require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
 
 const argv = yargs
   .usage(
