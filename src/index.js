@@ -3,7 +3,7 @@ const httpProxy = require('http-proxy')
 const pino = require('pino')
 const yargs = require('yargs')
 const filterRequest = require('./filterRequest')
-//require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
+require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
 const argv = yargs
   .usage(
