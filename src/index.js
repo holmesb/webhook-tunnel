@@ -3,7 +3,7 @@ const httpProxy = require('http-proxy')
 const pino = require('pino')
 const yargs = require('yargs')
 const filterRequest = require('./filterRequest')
-const { parse } = require('url')
+const parse = require('url')
 //require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 //process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
 
@@ -95,6 +95,7 @@ proxy.on('error', function (err, req, res) {
 })
 
 var server = http.createServer(function (req, res) {
+  const { parse } = require('url')
   logger.info(`Incoming request: ${req.method} ${req.url}`)
   const { path, query } = parse(req.url, true)
   logger.debug(req)
