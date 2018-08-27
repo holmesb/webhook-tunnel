@@ -95,7 +95,10 @@ proxy.on('error', function (err, req, res) {
 
 var server = http.createServer(function (req, res) {
   logger.info(`Incoming request: ${req.method} ${req.url}`)
+  const { path, query } = parse(req.url, true)
   logger.debug(req)
+  logger.debug(path)
+  logger.debug(query)
   try {
     filterRequest(req, argv)
     return proxy.web(req, res, { target: argv.target })
